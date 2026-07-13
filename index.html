@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Adventure Indonesia - Belajar Matematika Sambil Bermain!</title>
+  <meta name="description" content="Game petualangan matematika interaktif untuk anak SD kelas 1-6. Belajar seru dengan level, poin, dan hadiah menarik!">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas Confetti -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Header Shell -->
+  <header>
+    <a href="#" class="brand" id="header-brand-logo">
+      <span class="brand-icon">🎒</span>
+      <span>Math Adventure</span>
+    </a>
+    <div class="header-actions">
+      <!-- Star count indicator -->
+      <div class="stat-item" style="color: var(--gold);" title="Total Bintang Kamu">
+        <span>⭐</span><span id="header-stars">0</span>
+      </div>
+      <!-- Points indicator -->
+      <div class="stat-item" style="color: var(--accent);" title="Skor Kamu">
+        <span>🏆</span><span id="header-points">0</span>
+      </div>
+      <!-- Theme Toggle -->
+      <button class="btn btn-outline btn-icon" id="theme-toggle-btn" title="Ganti Tema">🌓</button>
+      <!-- Scoreboard Button -->
+      <button class="btn btn-outline btn-icon" id="scoreboard-btn" title="Papan Skor">🏆</button>
+      <!-- Profile Button -->
+      <button class="btn btn-outline btn-icon" id="profile-btn" title="Profil Kamu">👤</button>
+    </div>
+  </header>
+
+  <!-- Main Content Screens Container -->
+  <main>
+    
+    <!-- 1. HOME SCREEN (Kelas 1-6 Select) -->
+    <section id="home-screen" class="screen active">
+      <div class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">Math Adventure <br>Indonesia!</h1>
+          <p class="hero-subtitle">Membantu petualang muda menguasai matematika dengan cara yang seru dan penuh tantangan. Pilih kelasmu untuk mulai bermain!</p>
+          <button class="btn btn-primary btn-large" id="hero-start-btn">🎒 Mulai Petualangan!</button>
+        </div>
+        <div class="mascot-container">
+          <!-- Animated Mascot SVG -->
+          <svg class="mascot-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g id="mascot-body">
+              <!-- Body -->
+              <rect x="25" y="35" width="50" height="45" rx="15" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="4"/>
+              <!-- Screen -->
+              <rect x="32" y="42" width="36" height="26" rx="8" fill="var(--bg-app)" stroke="var(--text-main)" stroke-width="3"/>
+              <!-- Eyes -->
+              <circle cx="43" y="55" r="4" fill="var(--accent)"/>
+              <circle cx="57" y="55" r="4" fill="var(--accent)"/>
+              <!-- Cheeks -->
+              <circle cx="37" y="62" r="2.5" fill="var(--danger)" opacity="0.6"/>
+              <circle cx="63" y="62" r="2.5" fill="var(--danger)" opacity="0.6"/>
+              <!-- Mouth -->
+              <path d="M 46 62 Q 50 66 54 62" stroke="var(--text-main)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Head Antenna -->
+              <line x1="50" y1="35" x2="50" y2="20" stroke="var(--text-main)" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="50" y="16" r="6" fill="var(--gold)" stroke="var(--text-main)" stroke-width="3"/>
+              <!-- Little cute hands -->
+              <circle cx="20" y="58" r="5" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="3"/>
+              <circle cx="80" y="58" r="5" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="3"/>
+              <!-- Wheels/Legs -->
+              <rect x="32" y="80" width="12" height="6" rx="3" fill="var(--text-main)"/>
+              <rect x="56" y="80" width="12" height="6" rx="3" fill="var(--text-main)"/>
+            </g>
+          </svg>
+          <div class="mascot-speech" id="home-mascot-speech">Hai! Aku Robi, teman petualang belajarmu. Pilih kelasmu di bawah ini ya!</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Pilih Kelas</h2>
+      <div class="grade-grid" id="grade-selection-grid">
+        <!-- Grade 1 -->
+        <div class="grade-card g1" data-grade="1">
+          <div class="grade-badge">Kelas 1</div>
+          <h3 class="grade-title">Mulai Berhitung</h3>
+          <p class="grade-desc">Mengenal angka, penjumlahan & pengurangan sederhana, tebak angka, dan bentuk dasar.</p>
+        </div>
+        <!-- Grade 2 -->
+        <div class="grade-card g2" data-grade="2">
+          <div class="grade-badge">Kelas 2</div>
+          <h3 class="grade-title">Dasar Aritmatika</h3>
+          <p class="grade-desc">Penjumlahan 3 digit, pengurangan lanjut, perkalian dasar, dan pembagian sederhana.</p>
+        </div>
+        <!-- Grade 3 -->
+        <div class="grade-card g3" data-grade="3">
+          <div class="grade-badge">Kelas 3</div>
+          <h3 class="grade-title">Perhitungan Kreatif</h3>
+          <p class="grade-desc">Perkalian, pembagian, pecahan sederhana, serta membaca waktu dan jam.</p>
+        </div>
+        <!-- Grade 4 -->
+        <div class="grade-card g4" data-grade="4">
+          <div class="grade-badge">Kelas 4</div>
+          <h3 class="grade-title">Eksplorasi Matematika</h3>
+          <p class="grade-desc">Pecahan senilai, rumus keliling & luas, faktor, kelipatan (KPK & FPB).</p>
+        </div>
+        <!-- Grade 5 -->
+        <div class="grade-card g5" data-grade="5">
+          <div class="grade-badge">Kelas 5</div>
+          <h3 class="grade-title">Matematika Praktis</h3>
+          <p class="grade-desc">Desimal, persentase, volume kubus/balok, dan operasi hitung campuran.</p>
+        </div>
+        <!-- Grade 6 -->
+        <div class="grade-card g6" data-grade="6">
+          <div class="grade-badge">Kelas 6</div>
+          <h3 class="grade-title">Persiapan Hebat</h3>
+          <p class="grade-desc">Bilangan bulat negatif, perbandingan, skala, kecepatan, dan simulasi ujian kelulusan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TOPICS SCREEN (Select Math Topic) -->
+    <section id="topics-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="topics-back-btn">⬅️ Kembali</button>
+        <h2 id="topics-grade-title">Kelas 1</h2>
+        <div></div>
+      </div>
+      <h3 class="section-title">Pilih Topik Belajar</h3>
+      <div class="grade-grid" id="topics-list-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 3. GAME MODES SCREEN -->
+    <section id="modes-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="modes-back-btn">⬅️ Kembali</button>
+        <h2 id="modes-title">Pilih Mode Bermain</h2>
+        <div></div>
+      </div>
+      <div class="modes-grid">
+        <!-- Adventure -->
+        <div class="mode-card" data-mode="adventure">
+          <div class="mode-icon">🗺️</div>
+          <h3 class="mode-name">Adventure</h3>
+          <p class="mode-desc">Jelajahi pulau matematika, selesaikan level, dan kumpulkan medali!</p>
+        </div>
+        <!-- Time Challenge -->
+        <div class="mode-card" data-mode="time">
+          <div class="mode-icon">⚡</div>
+          <h3 class="mode-name">Time Challenge</h3>
+          <p class="mode-desc">Pacu otakmu! Jawab soal sebanyak-banyaknya dalam waktu 60 detik.</p>
+        </div>
+        <!-- Battle -->
+        <div class="mode-card" data-mode="battle">
+          <div class="mode-icon">🏆</div>
+          <h3 class="mode-name">Battle</h3>
+          <p class="mode-desc">Mode 2 pemain bergantian. Siapa yang meraih poin tertinggi dialah pemenangnya!</p>
+        </div>
+        <!-- Daily Quiz -->
+        <div class="mode-card" data-mode="daily">
+          <div class="mode-icon">⭐</div>
+          <h3 class="mode-name">Daily Quiz</h3>
+          <p class="mode-desc">Kuis harian seru. Selesaikan setiap hari untuk hadiah bonus bintang ekstra!</p>
+        </div>
+        <!-- Treasure Hunt -->
+        <div class="mode-card" data-mode="treasure">
+          <div class="mode-icon">🎁</div>
+          <h3 class="mode-name">Treasure Hunt</h3>
+          <p class="mode-desc">Cari peti harta karun dengan memecahkan petunjuk koordinat matematika.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ADVENTURE MAP SCREEN -->
+    <section id="map-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="map-back-btn">⬅️ Kembali</button>
+        <h2 id="map-title-text">Pulau Matematika</h2>
+        <div style="font-weight: 700;" id="map-progress-percent">Progress: 0%</div>
+      </div>
+      
+      <div class="map-canvas-container">
+        <!-- SVG lines linking nodes will be added dynamically -->
+        <svg class="map-svg" id="map-svg-connections"></svg>
+        <div id="map-nodes-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <p style="color: var(--text-muted);">Selesaikan semua level untuk mendapatkan <strong>Sertifikat Kelulusan!</strong></p>
+      </div>
+    </section>
+
+    <!-- 5. QUIZ GAME SCREEN -->
+    <section id="game-screen" class="screen">
+      <div class="quiz-header">
+        <div class="stat-item" id="game-level-indicator">Level 1</div>
+        <div class="stat-item" id="game-hearts-container">
+          <span class="heart">❤️</span>
+          <span class="heart">❤️</span>
+          <span class="heart">❤️</span>
+        </div>
+        <div class="stat-item" id="game-score-indicator">Skor: 0</div>
+      </div>
+      
+      <!-- Time challenge progress bar -->
+      <div class="timer-bar-container" id="timer-bar-container" style="display: none;">
+        <div class="timer-bar" id="game-timer-bar"></div>
+      </div>
+
+      <div class="quiz-container">
+        <div class="question-box" id="game-question-text">
+          24 + 16 = ?
+        </div>
+        <div class="options-grid" id="game-options-container">
+          <button class="option-btn">40</button>
+          <button class="option-btn">41</button>
+          <button class="option-btn">42</button>
+          <button class="option-btn">39</button>
+        </div>
+      </div>
+
+      <div class="feedback-area">
+        <button class="btn btn-outline" id="game-hint-btn">💡 Bantuan</button>
+        <span id="game-combo-text" style="color: var(--secondary); font-weight: 800; font-size: 1.1rem; visibility: hidden;">Combo x5! 🔥</span>
+        <button class="btn btn-danger" id="game-quit-btn">Keluar</button>
+      </div>
+    </section>
+
+    <!-- 6. BATTLE SETUP SCREEN -->
+    <section id="battle-setup-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="battle-setup-back-btn">⬅️ Batal</button>
+        <h2>Persiapan Pertarungan</h2>
+        <div></div>
+      </div>
+      <div class="quiz-container" style="background: var(--bg-card); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+        <div class="form-group">
+          <label class="form-label" for="player1-name-input">Nama Pemain 1</label>
+          <input type="text" class="form-input" id="player1-name-input" value="Pemain 1">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="player2-name-input">Nama Pemain 2</label>
+          <input type="text" class="form-input" id="player2-name-input" value="Pemain 2">
+        </div>
+        <button class="btn btn-primary" id="battle-start-play-btn" style="width: 100%;">⚔️ Mulai Duel!</button>
+      </div>
+    </section>
+
+    <!-- 7. BATTLE SCREEN -->
+    <section id="battle-screen" class="screen">
+      <div class="quiz-header" style="display: grid; grid-template-columns: 1fr 2fr 1fr; text-align: center;">
+        <div>
+          <div style="font-weight: 700;" id="battle-p1-name">Pemain 1</div>
+          <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;" id="battle-p1-score">0</div>
+        </div>
+        <div style="font-size: 1.3rem; font-weight: 800; color: var(--secondary);" id="battle-turn-indicator">
+          Giliran Pemain 1!
+        </div>
+        <div>
+          <div style="font-weight: 700;" id="battle-p2-name">Pemain 2</div>
+          <div style="color: var(--accent); font-weight: 700; font-size: 1.25rem;" id="battle-p2-score">0</div>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <div class="question-box" id="battle-question-text">
+          Memuat soal...
+        </div>
+        <div class="options-grid" id="battle-options-container">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button class="btn btn-danger" id="battle-quit-btn">Menyerah</button>
+      </div>
+    </section>
+
+    <!-- 8. TREASURE HUNT MAP / CLUES SCREEN -->
+    <section id="treasure-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="treasure-back-btn">⬅️ Kembali</button>
+        <h2>🎁 Treasure Hunt</h2>
+        <div></div>
+      </div>
+      <div class="quiz-container" style="background: var(--bg-card); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow); text-align: center;">
+        <h3>Temukan Peti Harta Karun!</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Pecahkan 3 soal matematika koordinat pulau berikut untuk membuka gembok peti!</p>
+        <div style="font-size: 4rem; margin: 1.5rem 0;" id="treasure-chest-icon">🔒🎁</div>
+        
+        <div id="treasure-puzzle-box" style="margin-bottom: 1.5rem;">
+          <!-- Active clue here -->
+        </div>
+        <div class="options-grid" id="treasure-options-container">
+          <!-- Options -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. GAME RESULT SCREEN -->
+    <section id="result-screen" class="screen">
+      <div class="quiz-container" style="background: var(--bg-card); padding: 3rem 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow); text-align: center;">
+        <h2 id="result-title" style="font-size: 2.2rem; margin-bottom: 1rem;">Hebat! Kamu Selesai!</h2>
+        <div id="result-medal-icon" style="font-size: 5rem; margin: 1rem 0;">🥇</div>
+        <h3 id="result-medal-name" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 2rem;">Medali Emas</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+          <div style="background: var(--bg-app); padding: 1rem; border-radius: 12px;">
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Total Skor</p>
+            <p style="font-size: 1.5rem; font-weight: 700; color: var(--accent);" id="result-score-val">120</p>
+          </div>
+          <div style="background: var(--bg-app); padding: 1rem; border-radius: 12px;">
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Combo Maksimal</p>
+            <p style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);" id="result-combo-val">5</p>
+          </div>
+        </div>
+
+        <div class="mascot-container" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+          <div class="mascot-speech" id="result-mascot-speech">Kamu luar biasa! Ayo kita coba tantangan berikutnya!</div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="result-next-btn">Lanjutkan ➡️</button>
+          <button class="btn btn-outline" id="result-retry-btn">Main Lagi 🔄</button>
+          <button class="btn btn-outline" id="result-home-btn">Menu Utama 🏠</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CERTIFICATE VIEW SCREEN -->
+    <section id="cert-screen" class="screen">
+      <div class="quiz-header">
+        <button class="btn btn-outline" id="cert-back-btn">⬅️ Kembali</button>
+        <h2>Sertifikat Prestasi</h2>
+        <div></div>
+      </div>
+      <div class="certificate-frame" id="certificate-print-area">
+        <div class="certificate-badge">🏆🏅</div>
+        <div class="certificate-title">Sertifikat Kelulusan</div>
+        <div class="certificate-subtitle">Diberikan dengan hormat kepada petualang hebat:</div>
+        <div class="certificate-name" id="cert-player-name">Petualang Matematika</div>
+        <p class="certificate-text">
+          Karena telah berhasil menyelesaikan seluruh level petualangan matematika di <br>
+          <strong>Math Adventure Indonesia</strong> untuk semua kelas tingkat Sekolah Dasar.<br>
+          Kamu resmi menjadi <strong>Master Matematika!</strong>
+        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ccc; padding-top: 1.5rem; font-size: 0.85rem; color: #555;">
+          <div>Tanggal: <span id="cert-date">13 Juli 2026</span></div>
+          <div>Ditandatangani oleh: <strong>Robi si Robot</strong></div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+        <button class="btn btn-outline" id="cert-home-btn">Kembali ke Home</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Profile Modal -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="profile-close-btn">&times;</button>
+      <h2>Profil Petualang</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Kustomisasi petualang dan namamu di sini!</p>
+      
+      <div class="form-group">
+        <label class="form-label" for="profile-name-input">Nama Petualang</label>
+        <input type="text" class="form-input" id="profile-name-input" placeholder="Masukkan namamu...">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pilih Avatar</label>
+        <div class="avatar-selector" id="avatar-selection-grid">
+          <!-- Rendered in JS as clickable interactive SVG options -->
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="profile-save-btn" style="width: 100%;">Simpan Profil</button>
+    </div>
+  </div>
+
+  <!-- Scoreboard Modal -->
+  <div class="modal-overlay" id="scoreboard-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="scoreboard-close-btn">&times;</button>
+      <h2>Papan Skor Tertinggi</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Daftar skor petualangan terbaik!</p>
+      
+      <table class="scoreboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Skor</th>
+          </tr>
+        </thead>
+        <tbody id="scoreboard-rows-container">
+          <!-- Loaded via local storage JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Speech and sound synthesizer components logic -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
