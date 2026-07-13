@@ -193,9 +193,14 @@ header {
   text-align: center;
 }
 
-.mascot-svg {
+.mascot-svg, .mascot-img-pixel {
   width: 130px;
   height: 130px;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 4px solid var(--glass-border);
+  background: var(--bg-card);
+  box-shadow: var(--box-shadow);
   animation: float 4s ease-in-out infinite;
 }
 
@@ -475,7 +480,9 @@ header {
   position: relative;
   width: 100%;
   height: 480px;
-  background: radial-gradient(circle, hsl(200, 70%, 80%) 0%, hsl(200, 50%, 65%) 100%);
+  background-image: url('math_adventure_map_bg.png');
+  background-size: cover;
+  background-position: center;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   overflow: hidden;
@@ -483,7 +490,7 @@ header {
 }
 
 [data-theme="dark"] .map-canvas-container {
-  background: radial-gradient(circle, hsl(220, 60%, 15%) 0%, hsl(220, 70%, 6%) 100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('math_adventure_map_bg.png');
 }
 
 .map-svg {
@@ -794,3 +801,18 @@ header {
     padding: 1rem;
   }
 }
+
+/* Treasure Chest Image Animation */
+.treasure-chest-img {
+  max-width: 180px;
+  height: auto;
+  animation: float 3s ease-in-out infinite, pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 10px 15px rgba(212, 175, 55, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.treasure-chest-img:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.7));
+}
+

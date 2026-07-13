@@ -47,32 +47,7 @@
           <button class="btn btn-primary btn-large" id="hero-start-btn">🎒 Mulai Petualangan!</button>
         </div>
         <div class="mascot-container">
-          <!-- Animated Mascot SVG -->
-          <svg class="mascot-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <g id="mascot-body">
-              <!-- Body -->
-              <rect x="25" y="35" width="50" height="45" rx="15" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="4"/>
-              <!-- Screen -->
-              <rect x="32" y="42" width="36" height="26" rx="8" fill="var(--bg-app)" stroke="var(--text-main)" stroke-width="3"/>
-              <!-- Eyes -->
-              <circle cx="43" y="55" r="4" fill="var(--accent)"/>
-              <circle cx="57" y="55" r="4" fill="var(--accent)"/>
-              <!-- Cheeks -->
-              <circle cx="37" y="62" r="2.5" fill="var(--danger)" opacity="0.6"/>
-              <circle cx="63" y="62" r="2.5" fill="var(--danger)" opacity="0.6"/>
-              <!-- Mouth -->
-              <path d="M 46 62 Q 50 66 54 62" stroke="var(--text-main)" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <!-- Head Antenna -->
-              <line x1="50" y1="35" x2="50" y2="20" stroke="var(--text-main)" stroke-width="4" stroke-linecap="round"/>
-              <circle cx="50" y="16" r="6" fill="var(--gold)" stroke="var(--text-main)" stroke-width="3"/>
-              <!-- Little cute hands -->
-              <circle cx="20" y="58" r="5" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="3"/>
-              <circle cx="80" y="58" r="5" fill="var(--secondary)" stroke="var(--text-main)" stroke-width="3"/>
-              <!-- Wheels/Legs -->
-              <rect x="32" y="80" width="12" height="6" rx="3" fill="var(--text-main)"/>
-              <rect x="56" y="80" width="12" height="6" rx="3" fill="var(--text-main)"/>
-            </g>
-          </svg>
+          <img src="math_adventure_hero_mascot.png" class="mascot-img-pixel" alt="Robi si Robot">
           <div class="mascot-speech" id="home-mascot-speech">Hai! Aku Robi, teman petualang belajarmu. Pilih kelasmu di bawah ini ya!</div>
         </div>
       </div>
@@ -287,7 +262,9 @@
       <div class="quiz-container" style="background: var(--bg-card); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow); text-align: center;">
         <h3>Temukan Peti Harta Karun!</h3>
         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Pecahkan 3 soal matematika koordinat pulau berikut untuk membuka gembok peti!</p>
-        <div style="font-size: 4rem; margin: 1.5rem 0;" id="treasure-chest-icon">🔒🎁</div>
+        <div style="margin: 1.5rem 0;" id="treasure-chest-container">
+          <img src="math_adventure_treasure_chest.png" class="treasure-chest-img" alt="Peti Harta Karun">
+        </div>
         
         <div id="treasure-puzzle-box" style="margin-bottom: 1.5rem;">
           <!-- Active clue here -->
