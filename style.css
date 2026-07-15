@@ -825,3 +825,99 @@ header {
   filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.7));
 }
 
+/* Animated Folklore Background */
+.folklore-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Make sure it doesn't block user clicks */
+  z-index: 0;
+  overflow: hidden;
+}
+
+.folklore-char {
+  position: absolute;
+  opacity: 0.18; /* Subtle transparency so it doesn't disrupt gameplay/reading */
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .folklore-char {
+  opacity: 0.12; /* Slightly dimmer in dark mode */
+}
+
+/* Gatotkaca: Flying across the top sky horizontally */
+.folklore-char.gatotkaca {
+  width: 120px;
+  top: 15%;
+  left: -150px;
+  animation: flyHorizontal 28s linear infinite;
+}
+
+/* Timun Mas: Jumping/running at the bottom right corner */
+.folklore-char.timun-mas {
+  width: 100px;
+  bottom: 10%;
+  right: 5%;
+  animation: floatBounce 6s ease-in-out infinite;
+}
+
+/* Sangkuriang: Floating slightly at the bottom left */
+.folklore-char.sangkuriang {
+  width: 130px;
+  bottom: 15%;
+  left: 8%;
+  animation: floatSway 8s ease-in-out infinite;
+}
+
+.folklore-char img {
+  width: 100%;
+  height: auto;
+}
+
+/* Animations */
+@keyframes flyHorizontal {
+  0% {
+    left: -150px;
+    transform: translateY(0px) scaleX(1);
+  }
+  49% {
+    transform: translateY(-20px) scaleX(1);
+  }
+  50% {
+    left: 105vw;
+    transform: translateY(-20px) scaleX(-1); /* Flip face direction when returning */
+  }
+  51% {
+    left: 105vw;
+    transform: translateY(-20px) scaleX(-1);
+  }
+  99% {
+    transform: translateY(0px) scaleX(-1);
+  }
+  100% {
+    left: -150px;
+    transform: translateY(0px) scaleX(1);
+  }
+}
+
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(5deg);
+  }
+}
+
+@keyframes floatSway {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-8deg);
+  }
+}
+
+
