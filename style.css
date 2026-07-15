@@ -47,12 +47,21 @@
 body {
   font-family: 'Fredoka', 'Outfit', sans-serif;
   background-color: var(--bg-app);
+  background-image: linear-gradient(to bottom, #ff3b3f 50%, #ffffff 50%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text-main);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.4s ease, color 0.4s ease, background-image 0.4s ease;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+}
+
+[data-theme="dark"] body {
+  background-image: linear-gradient(to bottom, #b31d20 50%, #121620 50%);
 }
 
 /* Scrollbar Customization */
